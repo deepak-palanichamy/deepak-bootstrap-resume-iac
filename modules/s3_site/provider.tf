@@ -18,18 +18,4 @@ provider "aws" {
       Account = "breezeware-demo"
     }
   }
-  alias = "breezeware_demo"
-}
-
-provider "aws" {
-  region  = "us-east-1"
-  profile = "breezeware-marta-AdministratorAccess-637423244917"
-  default_tags {
-    tags = {
-      Purpose = "demo"
-      Owner   = "deepak"
-      Account = "breezeware-marta"
-    }
-  }
-  alias = "breezeware_marta"
 }

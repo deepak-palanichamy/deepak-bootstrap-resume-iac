@@ -1,7 +1,6 @@
 resource "aws_s3_bucket" "sample_terraform_bucket" {
   bucket        = var.sample_terraform_bucket_name_var
   force_destroy = true
-  provider      = aws.breezeware_demo
 }
 
 data "aws_iam_policy_document" "sample_terraform_bucket_policy_doc" {
@@ -14,13 +13,11 @@ data "aws_iam_policy_document" "sample_terraform_bucket_policy_doc" {
       type        = "*"
     }
   }
-  provider = aws.breezeware_demo
 }
 
 resource "aws_s3_bucket_policy" "sample_terraform_bucket_policy" {
-  bucket   = aws_s3_bucket.sample_terraform_bucket.id
-  policy   = data.aws_iam_policy_document.sample_terraform_bucket_policy_doc.json
-  provider = aws.breezeware_demo
+  bucket = aws_s3_bucket.sample_terraform_bucket.id
+  policy = data.aws_iam_policy_document.sample_terraform_bucket_policy_doc.json
 }
 
 resource "aws_s3_bucket_public_access_block" "sample_terraform_bucket_acl" {
@@ -29,7 +26,6 @@ resource "aws_s3_bucket_public_access_block" "sample_terraform_bucket_acl" {
   block_public_policy     = false
   ignore_public_acls      = false
   restrict_public_buckets = false
-  provider                = aws.breezeware_demo
 }
 
 resource "aws_s3_bucket_website_configuration" "sample_terraform_bucket_website_config" {
@@ -40,6 +36,5 @@ resource "aws_s3_bucket_website_configuration" "sample_terraform_bucket_website_
   error_document {
     key = "index.html"
   }
-  provider = aws.breezeware_demo
 
 }
